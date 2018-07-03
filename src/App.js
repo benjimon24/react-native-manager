@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import ReduxThunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
 import { View } from 'react-native';
 import firebase from 'firebase';
 import reducers from './reducers';
@@ -23,8 +24,10 @@ class App extends Component {
   };
 
   render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+    // second argument is for initial state - mostly applicable to server-side rendering
     return (
-      <Provider store={createStore(reducers)}>
+      <Provider store={store}>
         <View>
           <Header headerText="Manager" />
           <LoginForm />
