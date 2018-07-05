@@ -7,6 +7,7 @@ import firebase from 'firebase';
 import reducers from './reducers';
 import LoginForm from './components/LoginForm';
 import { Header } from './components/common';
+import Router from './Router';
 
 class App extends Component {
   state = {};
@@ -28,10 +29,7 @@ class App extends Component {
     // second argument is for initial state - mostly applicable to server-side rendering
     return (
       <Provider store={store}>
-        <View>
-          <Header headerText="Manager" />
-          <LoginForm />
-        </View>
+        <Router />
       </Provider>
     );
   }
